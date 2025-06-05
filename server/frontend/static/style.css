@@ -124,3 +124,44 @@ img{
     text-align:center;
     box-shadow: 2px 2px 3px #999;  
 }
+
+.custom-horizontal-line {
+    width: 100%;
+}
+
+.custom-horizontal-line,.custom-vertical-line {
+    background-color: gray;
+    padding: 1px 0;
+    margin: 2rem auto;
+    border-radius: 50rem;
+}
+
+.custom-vertical-line {
+    width: 5px;
+}
+
+
+/*Contact styles*/
+
+.contact-container {
+    width: 50%;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 5%;
+    box-shadow: 0 15px 50px #0000001a;
+
+}
+
+.contact-card {
+    text-align: center;
+}
+
+.contact-card > img {
+    width: 60%;
+}
+
+.contact-card div.c
+
+.contact-card div.contact-details {
+    display: flex;
+}
