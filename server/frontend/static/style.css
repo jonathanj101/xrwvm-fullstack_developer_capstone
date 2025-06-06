@@ -137,7 +137,7 @@ img{
 }
 
 .custom-vertical-line {
-    width: 5px;
+    width: 3px;
 }
 
 
@@ -160,8 +160,6 @@ img{
     width: 60%;
 }
 
-.contact-card div.c
-
-.contact-card div.contact-details {
+.contact-card > div.contact-details {
     display: flex;
 }
