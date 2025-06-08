@@ -15,6 +15,7 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from .populate import initiate
 from .models import CarMake, CarModel
+from .restapis import get_request, analyze_review_sentiments, post_review
 
 
 # Get an instance of a logger
@@ -99,8 +100,14 @@ def get_cars(request):
 # a list of dealerships
 # def get_dealerships(request):
 # ...
+def get_dealers(request):
+    dealerships = get_request("/fetchDealers")
+    return JsonResponse({"status":200, "dealers":dealerships})
+
 #Update the `get_dealerships` render list of dealerships all by default, particular state if state is passed
 def get_dealerships(request, state="All"):
+    print(request)
+    print(state)
     if(state == "All"):
         endpoint = "/fetchDealers"
     else:
@@ -114,7 +121,9 @@ def get_dealerships(request, state="All"):
 def get_dealer_reviews(request, dealer_id):
     # if dealer id has been provided
     if(dealer_id):
+        print(f"dealer id {dealer_id}")
         endpoint = "/fetchReviews/dealer/"+str(dealer_id)
+        print(f"endpoint -> {endpoint}")
         reviews = get_request(endpoint)
         for review_detail in reviews:
             response = analyze_review_sentiments(review_detail['review'])
