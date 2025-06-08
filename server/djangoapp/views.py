@@ -1,12 +1,6 @@
 # Uncomment the required imports before adding the code
-
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import logout
-from django.contrib import messages
-from datetime import datetime
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
 import logging
@@ -46,7 +40,7 @@ def login_user(request):
 @csrf_exempt
 def logout_user(request): # Terminate user session
     logout(request)
-    data = {"userName":""} # Return empty username
+    data = {"userName": ""} # Return empty username
 
     return JsonResponse(data)
 
@@ -69,13 +63,19 @@ def register(request):
         # Check if user already exists
         User.objects.get(username=username)
         username_exist = True
-    except:
+    except Exception:
         # If not, simply log this is a new user
         logger.debug("{} is new user".format(username))
     # If it is a new user
     if not username_exist:
         # Create user in auth_user table
-        user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,password=password, email=email)
+        user = User.objects.create_user(
+            username=username,
+            first_name=first_name,
+            last_name=last_name,
+            password=password,
+            email=email
+        )
         # Login the user and redirect to list page
         login(request, user)
         data = {"userName":username,"status":"Authenticated"}
@@ -153,6 +153,11 @@ def add_review(request):
             response = post_review(data)
             return JsonResponse({"status":200})
         except:
-            return JsonResponse({"status":401,"message":"Error in posting review"})
+            return JsonResponse(
+                {
+                    "status":401,
+                    "message":"Error in posting review"
+                }
+            )
     else:
         return JsonResponse({"status":403,"message":"Unauthorized"})
