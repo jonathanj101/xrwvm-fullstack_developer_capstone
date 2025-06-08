@@ -63,7 +63,7 @@ def register(request):
         return JsonResponse(data)
 
 
-def get_cars(request)
+def get_cars(request):
     count = CarMake.objects.filter().count()
     if(count == 0):
         initiate()
