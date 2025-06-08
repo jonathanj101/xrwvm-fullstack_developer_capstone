@@ -30,13 +30,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    'https://jonatjimen-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai'
+    'https://jonatjimen-8000.theiadockernext-1-labs-prod-'
+    'theiak8s-4-tor01.proxy.cognitiveclass.ai'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://jonatjimen-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai'
+    'https://jonatjimen-8000.theiadockernext-1-labs-prod-'
+    'theiak8s-4-tor01.proxy.cognitiveclass.ai'
 ]
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [],
 }
@@ -131,7 +132,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(
+    BASE_DIR, 'static'
+)
 MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
 MEDIA_URL = '/media/'
 
